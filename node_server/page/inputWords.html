@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息录入</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .input_box {
+        width: 90vw;
+        height: 60px;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 2px 2px 6px rgba(193, 126, 255, 0.5), -2px -2px 5px white;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .button {
+        width: 90vw;
+        height: 50px;
+        background-color: rgb(193, 126, 255);
+        color: white;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        transition: background-color 0.3s ease;
+        margin-top: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: bold;
+        box-shadow: 2px 2px 6px rgba(26, 98, 117, 0.5), -2px -2px 5px white;
+    }
+
+    input {
+        width: 90%;
+        height: 50%;
+        border: none;
+        outline: none;
+        background: none;
+        font-size: 16px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="input_box">
+            <input type="text" id="english" placeholder="请输入单词">
+        </div>
+        <div class="input_box">
+            <input type="text" id="chinese" placeholder="请输入中文">
+        </div>
+        <div class="button" onclick="addWord()">添加</div>
+    </div>
+</body>
+<script>
+    function addWord() {
+        const word = document.getElementById("english").value;
+        const chinese = document.getElementById("chinese").value;
+        if (word && chinese) {
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ word, chinese })
+            };
+            fetch('http://192.168.1.70:5000/addWord', requestOptions)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+    }
+</script>
+
+</html>
