@@ -1,0 +1,21 @@
+
+{
+  "compilerOptions": {
+    "target": "esnext", //将目标 JavaScript 版本设置为 ESNext，编译输出现代浏览器能够支持的最新特性代码。
+    "module": "esnext",//指定模块系统为ESNext,即最新的ECMAScript模块系统，支持import.meta和其他最新的特性
+    "moduleResolution": "node",//node模块解析策略,通常设置为node以支持node.js风格的模块解析
+    "strict": true,
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "skipLibCheck": true, // 跳过库文件的类型检查，提升编译速度，减少类型冲突
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node","vue", "@vue/runtime-dom","@dcloudio/types"], // 这里列出你使用的模块
+    "typeRoots": ["./node_modules/@types", "./src/types"], // 自定义类型文件路径
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"] // 配置路径别名
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "src/**/*.tsx"],
+  "exclude": ["node_modules", "dist"]
+}
