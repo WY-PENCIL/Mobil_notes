@@ -7,7 +7,7 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 const port = 5000;
-const ip = "192.168.1.70";
+const ip = "192.168.1.57";
 
 app.get("/", (req, res) => {
   fs.readFile(`./page/inputWords.html`, "utf8", (err, data) => {
@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
       console.error(err);
       return;
     }
-    res.send("success");
+    res.send(data);
   });
 });
 app.post("/addWord", (req, res) => {
