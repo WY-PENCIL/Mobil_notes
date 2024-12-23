@@ -19,3 +19,53 @@
 # 3. 最后返回被装饰的函数
 
 #代码编写中如果发现很多行为需要共同扩展一个相同的能力，那么就可以编写一个装饰器来扩展这个能力，没有必要每个函数都去扩展这个能力。
+
+# 1. 装饰器的基本使用
+# def outer(func):
+#     def inner():
+#         print("这是装饰器")
+#         func()
+#     return inner
+
+# @outer
+# def fun():
+#     print("这是被装饰的函数")
+
+# fun()
+
+# 2. 装饰器带参数
+# def outer(arg):
+#     def inner(func):
+#         def wrapper():
+#             print("这是装饰器")
+#             func()
+#         return wrapper
+#     return inner
+
+# @outer("hello")
+# def fun():
+#     print("这是被装饰的函数")
+
+# fun()
+
+# 3. 装饰器装饰多个函数
+# def outer(func):
+#     def inner():
+#         print("这是装饰器")
+
+#         func()
+#     return inner
+
+# @outer
+# def fun1():
+#     print("这是被装饰的函数1")
+
+# @outer
+# def fun2():
+#     print("这是被装饰的函数2")
+
+# fun1()
+# fun2()
+
+
+
