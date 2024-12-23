@@ -68,4 +68,19 @@
 # fun2()
 
 
+# 标准版的装饰器
+def wrapper(func):
+    def inner(*args,**keywargs):
+        # 执行函数之前的操作
+        print("执行函数之前的操作")
+        ret = func(*args,**keywargs)
+        # 执行函数之后的操作
+        print("执行函数之后的操作")
+        return ret
+    return inner
 
+@ wrapper
+def fun1 (a,b):
+    print ("这是被装饰的函数1",a,b)
+
+fun1(1,2)# 使用了装饰器的普通函数调用
